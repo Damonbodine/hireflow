@@ -9,8 +9,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Id } from "@/convex/_generated/dataModel";
+
+type EmploymentType = "FullTime" | "PartTime" | "Contract" | "Temporary" | "Internship" | "AmeriCorps";
+type LocationType = "OnSite" | "Remote" | "Hybrid";
+type SalaryType = "Hourly" | "Annual" | "Stipend";
 
 export function JobPostingForm() {
   const router = useRouter();
@@ -25,13 +29,13 @@ export function JobPostingForm() {
     try {
       await createJob({
         title: form.get("title") as string,
-        departmentId: form.get("departmentId") as any,
-        employmentType: form.get("employmentType") as any,
-        locationType: form.get("locationType") as any,
+        departmentId: form.get("departmentId") as string as Id<"departments">,
+        employmentType: form.get("employmentType") as string as EmploymentType,
+        locationType: form.get("locationType") as string as LocationType,
         location: (form.get("location") as string) || undefined,
         salaryRangeMin: form.get("salaryRangeMin") ? Number(form.get("salaryRangeMin")) : undefined,
         salaryRangeMax: form.get("salaryRangeMax") ? Number(form.get("salaryRangeMax")) : undefined,
-        salaryType: form.get("salaryType") as any,
+        salaryType: form.get("salaryType") as string as SalaryType,
         description: form.get("description") as string,
         qualifications: form.get("qualifications") as string,
       });
@@ -51,8 +55,8 @@ export function JobPostingForm() {
           <div><Label htmlFor="title">Title</Label><Input id="title" name="title" required /></div>
           <div><Label htmlFor="departmentId">Department</Label><select name="departmentId" id="departmentId" required className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm">{(departments ?? []).map(d => <option key={d._id} value={d._id}>{d.name}</option>)}</select></div>
           <div className="grid grid-cols-2 gap-4">
-            <div><Label htmlFor="employmentType">Employment Type</Label><select name="employmentType" id="employmentType" required className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"><option value="FullTime">Full-Time</option><option value="PartTime">Part-Time</option><option value="Contract">Contract</option><option value="Temporary">Temporary</option><option value="Internship">Internship</option><option value="AmeriCorps">AmeriCorps</option></select></div>
-            <div><Label htmlFor="locationType">Location Type</Label><select name="locationType" id="locationType" required className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"><option value="OnSite">On-Site</option><option value="Remote">Remote</option><option value="Hybrid">Hybrid</option></select></div>
+            <div><Label htmlFor="employmentType">Employment Type</Label><select name="employmentType" id="employmentType" required className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"><option value="FullTime">Full Time</option><option value="PartTime">Part Time</option><option value="Contract">Contract</option><option value="Temporary">Temporary</option><option value="Internship">Internship</option><option value="AmeriCorps">AmeriCorps</option></select></div>
+            <div><Label htmlFor="locationType">Location Type</Label><select name="locationType" id="locationType" required className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"><option value="OnSite">On Site</option><option value="Remote">Remote</option><option value="Hybrid">Hybrid</option></select></div>
           </div>
           <div><Label htmlFor="location">Location (city, state)</Label><Input id="location" name="location" placeholder="Austin, TX" /></div>
           <div className="grid grid-cols-3 gap-4">

@@ -1,0 +1,67 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e16]: H
+        - generic [ref=e17]: HireFlow
+      - navigation [ref=e18]:
+        - link "Dashboard" [ref=e19] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e20]
+          - text: Dashboard
+        - link "Jobs" [ref=e25] [cursor=pointer]:
+          - /url: /jobs
+          - img [ref=e26]
+          - text: Jobs
+        - link "Candidates" [ref=e29] [cursor=pointer]:
+          - /url: /candidates
+          - img [ref=e30]
+          - text: Candidates
+        - link "Interviews" [ref=e35] [cursor=pointer]:
+          - /url: /interviews
+          - img [ref=e36]
+          - text: Interviews
+        - link "Offers" [ref=e38] [cursor=pointer]:
+          - /url: /offers
+          - img [ref=e39]
+          - text: Offers
+        - link "Reports" [ref=e43] [cursor=pointer]:
+          - /url: /reports
+          - img [ref=e44]
+          - text: Reports
+        - link "Settings" [ref=e46] [cursor=pointer]:
+          - /url: /settings
+          - img [ref=e47]
+          - text: Settings
+    - main [ref=e50]:
+      - button "Open user menu" [ref=e53] [cursor=pointer]:
+        - img "Test Admin's logo" [ref=e56]
+      - generic [ref=e179]:
+        - generic [ref=e182]:
+          - generic [ref=e183]: QC
+          - generic [ref=e184]:
+            - heading "QA Test Candidate" [level=1] [ref=e185]
+            - paragraph [ref=e186]: Program Analyst at Red Cross
+            - generic [ref=e187]:
+              - generic [ref=e188]: qa-test@factory512.dev
+              - generic [ref=e189]: (512) 555-9999
+            - generic [ref=e190]:
+              - generic [ref=e191]: qa-test
+              - generic [ref=e192]: bilingual
+          - generic [ref=e193]: LinkedIn
+        - generic [ref=e194]:
+          - generic [ref=e196]: Applications
+          - table [ref=e199]:
+            - rowgroup [ref=e200]:
+              - row "Position Stage Applied Starred" [ref=e201]:
+                - columnheader "Position" [ref=e202]
+                - columnheader "Stage" [ref=e203]
+                - columnheader "Applied" [ref=e204]
+                - columnheader "Starred" [ref=e205]
+            - rowgroup
+        - generic [ref=e206]:
+          - generic [ref=e208]: Notes
+          - paragraph [ref=e210]: QA test candidate for CRUD validation
+  - button "Open Next.js Dev Tools" [ref=e9] [cursor=pointer]:
+    - img [ref=e10]
+  - alert [ref=e13]

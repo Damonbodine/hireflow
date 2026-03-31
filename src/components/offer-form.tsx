@@ -11,6 +11,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Id } from "@/convex/_generated/dataModel";
 
+type SalaryType = "Hourly" | "Annual" | "Stipend";
+
 export function OfferForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -28,7 +30,7 @@ export function OfferForm() {
         applicationId,
         proposedTitle: form.get("proposedTitle") as string,
         proposedSalary: Number(form.get("proposedSalary")),
-        salaryType: form.get("salaryType") as any,
+        salaryType: form.get("salaryType") as string as SalaryType,
         startDate: new Date(form.get("startDate") as string).getTime(),
         expirationDate: new Date(form.get("expirationDate") as string).getTime(),
         benefits: (form.get("benefits") as string) || undefined,

@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Plus, Search } from "lucide-react";
+import { formatEnum } from "@/lib/utils";
 
 export function CandidatesTable() {
   const [search, setSearch] = useState("");
@@ -42,7 +43,7 @@ export function CandidatesTable() {
                 <TableCell className="font-medium">{c.firstName} {c.lastName}</TableCell>
                 <TableCell>{c.email}</TableCell>
                 <TableCell>{c.currentTitle ?? "—"}</TableCell>
-                <TableCell><Badge variant="outline">{c.source}</Badge></TableCell>
+                <TableCell><Badge variant="outline">{formatEnum(c.source)}</Badge></TableCell>
                 <TableCell>
                   <div className="flex gap-1 flex-wrap">{c.tags.map((t) => <Badge key={t} variant="secondary" className="text-xs">{t}</Badge>)}</div>
                 </TableCell>

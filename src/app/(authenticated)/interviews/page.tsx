@@ -6,6 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { Plus } from "lucide-react";
+import { formatEnum } from "@/lib/utils";
 
 export default function InterviewsPage() {
   const interviews = useQuery(api.interviews.list);
@@ -36,7 +37,7 @@ export default function InterviewsPage() {
                 <TableCell>{int.jobTitle}</TableCell>
                 <TableCell>{new Date(int.scheduledDate).toLocaleDateString()}</TableCell>
                 <TableCell>{int.scheduledTime}</TableCell>
-                <TableCell><Badge variant="outline">{int.interviewType}</Badge></TableCell>
+                <TableCell><Badge variant="outline">{formatEnum(int.interviewType)}</Badge></TableCell>
                 <TableCell><Badge variant={int.status === "Scheduled" ? "default" : "secondary"}>{int.status}</Badge></TableCell>
                 <TableCell>{int.interviewerNames.join(", ")}</TableCell>
               </TableRow>

@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { formatEnum } from "@/lib/utils";
 
 export default function JobDetailPage() {
   const params = useParams();
@@ -31,7 +32,7 @@ export default function JobDetailPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold">{job.title}</h1>
-          <p className="text-muted-foreground">{job.departmentName} · {job.employmentType} · {job.locationType}{job.location ? ` — ${job.location}` : ""}</p>
+          <p className="text-muted-foreground">{job.departmentName} · {formatEnum(job.employmentType)} · {formatEnum(job.locationType)}{job.location ? ` — ${job.location}` : ""}</p>
         </div>
         <div className="flex gap-2">
           <Badge variant={job.status === "Open" ? "default" : "secondary"}>{job.status}</Badge>
@@ -47,7 +48,7 @@ export default function JobDetailPage() {
           <Card>
             <CardHeader><CardTitle>Details</CardTitle></CardHeader>
             <CardContent className="space-y-2 text-sm">
-              {job.salaryRangeMin && <div><span className="text-muted-foreground">Salary:</span> ${job.salaryRangeMin.toLocaleString()} - ${job.salaryRangeMax?.toLocaleString()} ({job.salaryType})</div>}
+              {job.salaryRangeMin && <div><span className="text-muted-foreground">Salary:</span> ${job.salaryRangeMin.toLocaleString()} - ${job.salaryRangeMax?.toLocaleString()} ({formatEnum(job.salaryType)})</div>}
               <div><span className="text-muted-foreground">Applicants:</span> {job.applicantCount}</div>
               {job.openDate && <div><span className="text-muted-foreground">Opened:</span> {new Date(job.openDate).toLocaleDateString()}</div>}
             </CardContent>

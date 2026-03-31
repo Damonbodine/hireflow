@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { query, mutation } from "./_generated/server";
+import { requireRole } from "./authHelpers";
 
 export const list = query({
   args: {},
@@ -29,7 +30,7 @@ export const listByApplication = query({
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) return [];
-    const interviews = await ctx.db.query("interviews").withIndex("by_applicationId", (q) => q.eq("applicationId", args.applicationId)).order("desc").collect();
+    const interviews = await ctx.db.query("interviews").withIndex("by_applicationId", (q) => q.eq("applicationId", args.applicationId)).order("desc").take(100);
     const results = [];
     for (const interview of interviews) {
       const interviewerNames = [];
@@ -64,8 +65,7 @@ export const create = mutation({
     notes: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Not authenticated");
+    await requireRole(ctx, ["HiringManager", "Recruiter", "HiringAdmin"]);
     return await ctx.db.insert("interviews", {
       ...args,
       status: "Scheduled" as const,
@@ -80,8 +80,7 @@ export const updateStatus = mutation({
     status: v.union(v.literal("Scheduled"), v.literal("Completed"), v.literal("Cancelled"), v.literal("NoShow")),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Not authenticated");
+    await requireRole(ctx, ["HiringManager", "Recruiter", "HiringAdmin"]);
     const existing = await ctx.db.get(args.id);
     if (!existing) throw new Error("Interview not found");
     await ctx.db.patch(args.id, { status: args.status });

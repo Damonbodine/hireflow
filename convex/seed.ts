@@ -1,4 +1,29 @@
-import { internalMutation } from "./_generated/server";
+import { internalMutation, internalQuery } from "./_generated/server";
+import { v } from "convex/values";
+
+export const checkData = internalQuery({
+  args: {},
+  handler: async (ctx) => {
+    const depts = await ctx.db.query("departments").take(1);
+    const users = await ctx.db.query("users").take(1);
+    return { hasDepts: depts.length > 0, hasUsers: users.length > 0 };
+  },
+});
+
+export const createTestUser = internalMutation({
+  args: {
+    clerkId: v.string(),
+    email: v.string(),
+    name: v.string(),
+    role: v.union(v.literal("HiringAdmin"), v.literal("HiringManager"), v.literal("Interviewer"), v.literal("Recruiter")),
+    departmentId: v.optional(v.id("departments")),
+  },
+  handler: async (ctx, args) => {
+    const existing = await ctx.db.query("users").withIndex("by_clerkId", (q) => q.eq("clerkId", args.clerkId)).collect();
+    if (existing.length > 0) return existing[0]._id;
+    return await ctx.db.insert("users", { ...args, isActive: true, createdAt: Date.now() });
+  },
+});
 
 export const seedAll = internalMutation({
   args: {},

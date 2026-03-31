@@ -1,0 +1,86 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e16]: H
+        - generic [ref=e17]: HireFlow
+      - navigation [ref=e18]:
+        - link "Dashboard" [ref=e19] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e20]
+          - text: Dashboard
+        - link "Jobs" [ref=e25] [cursor=pointer]:
+          - /url: /jobs
+          - img [ref=e26]
+          - text: Jobs
+        - link "Candidates" [ref=e29] [cursor=pointer]:
+          - /url: /candidates
+          - img [ref=e30]
+          - text: Candidates
+        - link "Interviews" [ref=e35] [cursor=pointer]:
+          - /url: /interviews
+          - img [ref=e36]
+          - text: Interviews
+        - link "Offers" [ref=e38] [cursor=pointer]:
+          - /url: /offers
+          - img [ref=e39]
+          - text: Offers
+        - link "Reports" [ref=e43] [cursor=pointer]:
+          - /url: /reports
+          - img [ref=e44]
+          - text: Reports
+        - link "Settings" [ref=e46] [cursor=pointer]:
+          - /url: /settings
+          - img [ref=e47]
+          - text: Settings
+    - main [ref=e50]:
+      - button "Open user menu" [ref=e53] [cursor=pointer]:
+        - img "Test Admin's logo" [ref=e56]
+      - generic [ref=e145]:
+        - heading "Program Director — Pipeline" [level=1] [ref=e146]
+        - generic [ref=e147]:
+          - generic [ref=e149]:
+            - generic [ref=e150]: New
+            - generic [ref=e151]: "0"
+          - generic [ref=e153]:
+            - generic [ref=e154]: Screening
+            - generic [ref=e155]: "0"
+          - generic [ref=e156]:
+            - generic [ref=e157]:
+              - generic [ref=e158]: PhoneScreen
+              - generic [ref=e159]: "1"
+            - generic [ref=e161] [cursor=pointer]:
+              - generic [ref=e162]:
+                - generic [ref=e163]: Lisa Park
+                - button [ref=e164]:
+                  - img [ref=e165]
+              - paragraph [ref=e167]: Applied 3/23/2026
+          - generic [ref=e168]:
+            - generic [ref=e169]:
+              - generic [ref=e170]: Interview
+              - generic [ref=e171]: "1"
+            - generic [ref=e173] [cursor=pointer]:
+              - generic [ref=e174]:
+                - generic [ref=e175]: Sarah Chen
+                - button [ref=e176]:
+                  - img [ref=e177]
+              - paragraph [ref=e179]: Applied 3/18/2026
+          - generic [ref=e181]:
+            - generic [ref=e182]: SecondInterview
+            - generic [ref=e183]: "0"
+          - generic [ref=e184]:
+            - generic [ref=e185]:
+              - generic [ref=e186]: Reference
+              - generic [ref=e187]: "1"
+            - generic [ref=e189] [cursor=pointer]:
+              - generic [ref=e190]:
+                - generic [ref=e191]: Emma Davis
+                - button [ref=e192]:
+                  - img [ref=e193]
+              - paragraph [ref=e195]: Applied 3/16/2026
+          - generic [ref=e197]:
+            - generic [ref=e198]: Offer
+            - generic [ref=e199]: "0"
+  - button "Open Next.js Dev Tools" [ref=e9] [cursor=pointer]:
+    - img [ref=e10]
+  - alert [ref=e13]

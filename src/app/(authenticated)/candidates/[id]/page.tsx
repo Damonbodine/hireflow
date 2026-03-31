@@ -7,6 +7,7 @@ import { Id } from "@/convex/_generated/dataModel";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { formatEnum } from "@/lib/utils";
 
 export default function CandidateProfilePage() {
   const params = useParams();
@@ -37,7 +38,7 @@ export default function CandidateProfilePage() {
                 {candidate.tags.map((t) => <Badge key={t} variant="secondary">{t}</Badge>)}
               </div>
             </div>
-            <Badge variant="outline">{candidate.source}</Badge>
+            <Badge variant="outline">{formatEnum(candidate.source)}</Badge>
           </div>
         </CardContent>
       </Card>
@@ -58,7 +59,7 @@ export default function CandidateProfilePage() {
               {(applications ?? []).map((app) => (
                 <TableRow key={app._id}>
                   <TableCell className="font-medium">{app.jobTitle}</TableCell>
-                  <TableCell><Badge variant="outline">{app.stage}</Badge></TableCell>
+                  <TableCell><Badge variant="outline">{formatEnum(app.stage)}</Badge></TableCell>
                   <TableCell>{new Date(app.appliedDate).toLocaleDateString()}</TableCell>
                   <TableCell>{app.isStarred ? "\u2B50" : "\u2014"}</TableCell>
                 </TableRow>

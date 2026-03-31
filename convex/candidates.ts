@@ -1,12 +1,13 @@
 import { v } from "convex/values";
 import { query, mutation } from "./_generated/server";
+import { requireRole } from "./authHelpers";
 
 export const list = query({
   args: { search: v.optional(v.string()) },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) return [];
-    const all = await ctx.db.query("candidates").order("desc").collect();
+    const all = await ctx.db.query("candidates").order("desc").take(100);
     if (!args.search) return all;
     const s = args.search.toLowerCase();
     return all.filter((c) =>
@@ -41,8 +42,7 @@ export const create = mutation({
     notes: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Not authenticated");
+    await requireRole(ctx, ["Recruiter", "HiringAdmin"]);
     return await ctx.db.insert("candidates", {
       ...args,
       tags: args.tags ?? [],
@@ -65,8 +65,7 @@ export const update = mutation({
     notes: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Not authenticated");
+    await requireRole(ctx, ["Recruiter", "HiringAdmin"]);
     const { id, ...fields } = args;
     const updates = Object.fromEntries(
       Object.entries(fields).filter(([_, val]) => val !== undefined)

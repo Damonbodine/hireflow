@@ -10,6 +10,8 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
+type CandidateSource = "DirectApplication" | "Referral" | "LinkedIn" | "IndeedNonprofit" | "Idealist" | "JobBoard" | "Internal" | "Other";
+
 export function CandidateForm() {
   const router = useRouter();
   const createCandidate = useMutation(api.candidates.create);
@@ -26,7 +28,7 @@ export function CandidateForm() {
         lastName: form.get("lastName") as string,
         email: form.get("email") as string,
         phone: form.get("phone") as string,
-        source: form.get("source") as any,
+        source: form.get("source") as string as CandidateSource,
         linkedInUrl: (form.get("linkedInUrl") as string) || undefined,
         currentTitle: (form.get("currentTitle") as string) || undefined,
         currentOrganization: (form.get("currentOrganization") as string) || undefined,

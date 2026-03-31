@@ -5,6 +5,7 @@ import { api } from "@/convex/_generated/api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { formatEnum } from "@/lib/utils";
 
 export function UpcomingInterviews() {
   const interviews = useQuery(api.dashboard.getUpcomingInterviews);
@@ -30,7 +31,7 @@ export function UpcomingInterviews() {
                 <TableCell className="font-medium">{int.candidateName}</TableCell>
                 <TableCell>{int.jobTitle}</TableCell>
                 <TableCell>{new Date(int.scheduledDate).toLocaleDateString()} {int.scheduledTime}</TableCell>
-                <TableCell><Badge variant="outline">{int.interviewType}</Badge></TableCell>
+                <TableCell><Badge variant="outline">{formatEnum(int.interviewType)}</Badge></TableCell>
               </TableRow>
             ))}
             {(!interviews || interviews.length === 0) && (

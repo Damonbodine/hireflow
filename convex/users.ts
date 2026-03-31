@@ -6,11 +6,10 @@ export const getCurrentUser = query({
   handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) return null;
-    const users = await ctx.db
+    return await ctx.db
       .query("users")
-      .withIndex("by_clerkId", (q) => q.eq("clerkId", identity.subject))
-      .collect();
-    return users[0] ?? null;
+      .withIndex("by_clerkId", (q) => q.eq("clerkId", identity.tokenIdentifier))
+      .unique();
   },
 });
 
@@ -19,7 +18,7 @@ export const list = query({
   handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) return [];
-    return await ctx.db.query("users").order("desc").collect();
+    return await ctx.db.query("users").order("desc").take(100);
   },
 });
 

@@ -1,0 +1,119 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e16]: H
+        - generic [ref=e17]: HireFlow
+      - navigation [ref=e18]:
+        - link "Dashboard" [ref=e19] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e20]
+          - text: Dashboard
+        - link "Jobs" [ref=e25] [cursor=pointer]:
+          - /url: /jobs
+          - img [ref=e26]
+          - text: Jobs
+        - link "Candidates" [ref=e29] [cursor=pointer]:
+          - /url: /candidates
+          - img [ref=e30]
+          - text: Candidates
+        - link "Interviews" [ref=e35] [cursor=pointer]:
+          - /url: /interviews
+          - img [ref=e36]
+          - text: Interviews
+        - link "Offers" [ref=e38] [cursor=pointer]:
+          - /url: /offers
+          - img [ref=e39]
+          - text: Offers
+        - link "Reports" [ref=e43] [cursor=pointer]:
+          - /url: /reports
+          - img [ref=e44]
+          - text: Reports
+        - link "Settings" [ref=e46] [cursor=pointer]:
+          - /url: /settings
+          - img [ref=e47]
+          - text: Settings
+    - main [ref=e50]:
+      - button "Open user menu" [ref=e53] [cursor=pointer]:
+        - img "Test Admin's logo" [ref=e56]
+      - generic [ref=e98]:
+        - generic [ref=e99]:
+          - heading "Candidates" [level=1] [ref=e100]
+          - link "Add Candidate" [ref=e101] [cursor=pointer]:
+            - /url: /candidates/new
+            - img [ref=e102]
+            - text: Add Candidate
+        - generic [ref=e103]:
+          - img [ref=e104]
+          - textbox "Search by name, email, or tag..." [ref=e107]
+        - table [ref=e110]:
+          - rowgroup [ref=e111]:
+            - row "Name Email Title Source Tags" [ref=e112]:
+              - columnheader "Name" [ref=e113]
+              - columnheader "Email" [ref=e114]
+              - columnheader "Title" [ref=e115]
+              - columnheader "Source" [ref=e116]
+              - columnheader "Tags" [ref=e117]
+          - rowgroup [ref=e118]:
+            - row "QA Test Candidate qa-test@factory512.dev Program Analyst LinkedIn qa-test bilingual" [ref=e119] [cursor=pointer]:
+              - cell "QA Test Candidate" [ref=e120]
+              - cell "qa-test@factory512.dev" [ref=e121]
+              - cell "Program Analyst" [ref=e122]
+              - cell "LinkedIn" [ref=e123]:
+                - generic [ref=e124]: LinkedIn
+              - cell "qa-test bilingual" [ref=e125]:
+                - generic [ref=e126]:
+                  - generic [ref=e127]: qa-test
+                  - generic [ref=e128]: bilingual
+            - row "Emma Davis emma.davis@email.com Grant Specialist IndeedNonprofit grant-writing research" [ref=e129] [cursor=pointer]:
+              - cell "Emma Davis" [ref=e130]
+              - cell "emma.davis@email.com" [ref=e131]
+              - cell "Grant Specialist" [ref=e132]
+              - cell "IndeedNonprofit" [ref=e133]:
+                - generic [ref=e134]: IndeedNonprofit
+              - cell "grant-writing research" [ref=e135]:
+                - generic [ref=e136]:
+                  - generic [ref=e137]: grant-writing
+                  - generic [ref=e138]: research
+            - row "James Brown jbrown@email.com Community Outreach Coordinator Idealist community-organizing" [ref=e139] [cursor=pointer]:
+              - cell "James Brown" [ref=e140]
+              - cell "jbrown@email.com" [ref=e141]
+              - cell "Community Outreach Coordinator" [ref=e142]
+              - cell "Idealist" [ref=e143]:
+                - generic [ref=e144]: Idealist
+              - cell "community-organizing" [ref=e145]:
+                - generic [ref=e147]: community-organizing
+            - row "Lisa Park lisa.park@email.com Development Associate LinkedIn fundraising data-analysis" [ref=e148] [cursor=pointer]:
+              - cell "Lisa Park" [ref=e149]
+              - cell "lisa.park@email.com" [ref=e150]
+              - cell "Development Associate" [ref=e151]
+              - cell "LinkedIn" [ref=e152]:
+                - generic [ref=e153]: LinkedIn
+              - cell "fundraising data-analysis" [ref=e154]:
+                - generic [ref=e155]:
+                  - generic [ref=e156]: fundraising
+                  - generic [ref=e157]: data-analysis
+            - row "Michael Torres mtorres@email.com Clinical Social Worker Referral veteran LCSW" [ref=e158] [cursor=pointer]:
+              - cell "Michael Torres" [ref=e159]
+              - cell "mtorres@email.com" [ref=e160]
+              - cell "Clinical Social Worker" [ref=e161]
+              - cell "Referral" [ref=e162]:
+                - generic [ref=e163]: Referral
+              - cell "veteran LCSW" [ref=e164]:
+                - generic [ref=e165]:
+                  - generic [ref=e166]: veteran
+                  - generic [ref=e167]: LCSW
+            - row "Sarah Chen sarah.chen@email.com Senior Program Manager DirectApplication bilingual MSW grant-writing" [ref=e168] [cursor=pointer]:
+              - cell "Sarah Chen" [ref=e169]
+              - cell "sarah.chen@email.com" [ref=e170]
+              - cell "Senior Program Manager" [ref=e171]
+              - cell "DirectApplication" [ref=e172]:
+                - generic [ref=e173]: DirectApplication
+              - cell "bilingual MSW grant-writing" [ref=e174]:
+                - generic [ref=e175]:
+                  - generic [ref=e176]: bilingual
+                  - generic [ref=e177]: MSW
+                  - generic [ref=e178]: grant-writing
+  - button "Open Next.js Dev Tools" [ref=e9] [cursor=pointer]:
+    - img [ref=e10]
+  - alert [ref=e13]

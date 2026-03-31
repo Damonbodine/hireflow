@@ -1,12 +1,13 @@
 import { v } from "convex/values";
 import { query, mutation, internalMutation } from "./_generated/server";
+import { requireRole } from "./authHelpers";
 
 export const list = query({
   args: {},
   handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) return [];
-    const offers = await ctx.db.query("offers").order("desc").collect();
+    const offers = await ctx.db.query("offers").order("desc").take(100);
     const results = [];
     for (const offer of offers) {
       const app = await ctx.db.get(offer.applicationId);
@@ -38,7 +39,7 @@ export const getByApplication = query({
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) return null;
-    const offers = await ctx.db.query("offers").withIndex("by_applicationId", (q) => q.eq("applicationId", args.applicationId)).collect();
+    const offers = await ctx.db.query("offers").withIndex("by_applicationId", (q) => q.eq("applicationId", args.applicationId)).take(100);
     return offers[0] ?? null;
   },
 });
@@ -55,11 +56,7 @@ export const create = mutation({
     notes: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Not authenticated");
-    const users = await ctx.db.query("users").withIndex("by_clerkId", (q) => q.eq("clerkId", identity.subject)).collect();
-    const user = users[0];
-    if (!user) throw new Error("User not found");
+    const user = await requireRole(ctx, ["HiringAdmin"]);
     const now = Date.now();
     return await ctx.db.insert("offers", {
       ...args,
@@ -77,8 +74,7 @@ export const updateStatus = mutation({
     status: v.union(v.literal("Draft"), v.literal("Extended"), v.literal("Accepted"), v.literal("Declined"), v.literal("Expired"), v.literal("Rescinded")),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Not authenticated");
+    await requireRole(ctx, ["HiringAdmin"]);
     const offer = await ctx.db.get(args.id);
     if (!offer) throw new Error("Offer not found");
     await ctx.db.patch(args.id, { status: args.status });
@@ -87,6 +83,7 @@ export const updateStatus = mutation({
     }
   },
 });
+
 export const expireOffers = internalMutation({
   args: {},
   handler: async (ctx) => {
@@ -94,7 +91,7 @@ export const expireOffers = internalMutation({
     const extendedOffers = await ctx.db
       .query("offers")
       .withIndex("by_status", (q) => q.eq("status", "Extended"))
-      .collect();
+      .take(100);
     for (const offer of extendedOffers) {
       if (offer.expirationDate < now) {
         await ctx.db.patch(offer._id, { status: "Expired" as const });

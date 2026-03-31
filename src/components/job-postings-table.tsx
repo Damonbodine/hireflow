@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Plus } from "lucide-react";
+import { formatEnum } from "@/lib/utils";
 
 const statusColor = (status: string) => {
   switch (status) {
@@ -47,9 +48,9 @@ export function JobPostingsTable() {
               <TableRow key={job._id} className="cursor-pointer" onClick={() => router.push("/jobs/" + job._id)}>
                 <TableCell className="font-medium">{job.title}</TableCell>
                 <TableCell>{job.departmentName}</TableCell>
-                <TableCell><Badge variant={statusColor(job.status)}>{job.status}</Badge></TableCell>
-                <TableCell>{job.employmentType}</TableCell>
-                <TableCell>{job.locationType}{job.location ? " — " + job.location : ""}</TableCell>
+                <TableCell><Badge variant={statusColor(job.status)}>{formatEnum(job.status)}</Badge></TableCell>
+                <TableCell>{formatEnum(job.employmentType)}</TableCell>
+                <TableCell>{formatEnum(job.locationType)}{job.location ? " — " + job.location : ""}</TableCell>
                 <TableCell className="text-right">{job.applicantCount}</TableCell>
                 <TableCell>{job.openDate ? new Date(job.openDate).toLocaleDateString() : "—"}</TableCell>
               </TableRow>

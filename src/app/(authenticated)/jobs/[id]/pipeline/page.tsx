@@ -7,6 +7,7 @@ import { Id } from "@/convex/_generated/dataModel";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Star } from "lucide-react";
+import { formatEnum } from "@/lib/utils";
 
 const STAGES = ["New", "Screening", "PhoneScreen", "Interview", "SecondInterview", "Reference", "Offer"] as const;
 
@@ -25,11 +26,11 @@ export default function PipelinePage() {
       <h1 className="text-2xl font-bold">{job.title} — Pipeline</h1>
       <div className="flex gap-4 overflow-x-auto pb-4">
         {STAGES.map((stage) => {
-          const stageApps = applications.filter((a: any) => a.stage === stage);
+          const stageApps = applications.filter((a) => a.stage === stage);
           return (
             <div key={stage} className="min-w-[240px] bg-secondary/50 rounded-xl p-4">
               <div className="flex items-center justify-between mb-4">
-                <span className="font-semibold text-sm">{stage}</span>
+                <span className="font-semibold text-sm">{formatEnum(stage)}</span>
                 <Badge variant="secondary">{stageApps.length}</Badge>
               </div>
               <div className="space-y-2">

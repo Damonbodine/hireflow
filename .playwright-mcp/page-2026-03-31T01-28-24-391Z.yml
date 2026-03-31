@@ -1,0 +1,69 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e16]: H
+        - generic [ref=e17]: HireFlow
+      - navigation [ref=e18]:
+        - link "Dashboard" [ref=e19] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e20]
+          - text: Dashboard
+        - link "Jobs" [ref=e25] [cursor=pointer]:
+          - /url: /jobs
+          - img [ref=e26]
+          - text: Jobs
+        - link "Candidates" [ref=e29] [cursor=pointer]:
+          - /url: /candidates
+          - img [ref=e30]
+          - text: Candidates
+        - link "Interviews" [ref=e35] [cursor=pointer]:
+          - /url: /interviews
+          - img [ref=e36]
+          - text: Interviews
+        - link "Offers" [ref=e38] [cursor=pointer]:
+          - /url: /offers
+          - img [ref=e39]
+          - text: Offers
+        - link "Reports" [ref=e43] [cursor=pointer]:
+          - /url: /reports
+          - img [ref=e44]
+          - text: Reports
+        - link "Settings" [ref=e46] [cursor=pointer]:
+          - /url: /settings
+          - img [ref=e47]
+          - text: Settings
+    - main [ref=e50]:
+      - button "Open user menu" [ref=e53] [cursor=pointer]:
+        - img "Test Admin's logo" [ref=e56]
+      - generic [ref=e112]:
+        - generic [ref=e113]:
+          - generic [ref=e114]:
+            - heading "Program Director" [level=1] [ref=e115]
+            - paragraph [ref=e116]: Programs · FullTime · OnSite — Austin, TX
+          - generic [ref=e117]:
+            - generic [ref=e118]: Open
+            - link "Pipeline Board" [ref=e119] [cursor=pointer]:
+              - /url: /jobs/ns7b3ccm3gbmxew6x38tjwvvwn83wxvm/pipeline
+        - generic [ref=e120]:
+          - generic [ref=e121]:
+            - generic [ref=e123]: Description
+            - paragraph [ref=e125]: Lead program development and community partnerships for our flagship initiative.
+          - generic [ref=e126]:
+            - generic [ref=e127]:
+              - generic [ref=e129]: Details
+              - generic [ref=e130]:
+                - generic [ref=e131]: "Salary: $65,000 - $80,000 (Annual)"
+                - generic [ref=e132]: "Applicants: 3"
+                - generic [ref=e133]: "Opened: 3/15/2026"
+            - generic [ref=e134]:
+              - generic [ref=e136]: Qualifications
+              - paragraph [ref=e138]: MSW or related degree, 5+ years nonprofit management experience.
+            - generic [ref=e139]:
+              - generic [ref=e141]: Actions
+              - generic [ref=e142]:
+                - button "Put On Hold" [ref=e143]
+                - button "Mark as Filled" [ref=e144]
+  - button "Open Next.js Dev Tools" [ref=e9] [cursor=pointer]:
+    - img [ref=e10]
+  - alert [ref=e13]

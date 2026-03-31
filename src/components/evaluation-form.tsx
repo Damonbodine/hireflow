@@ -10,6 +10,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Id } from "@/convex/_generated/dataModel";
 
+type Recommendation = "StrongHire" | "Hire" | "Neutral" | "NoHire" | "StrongNoHire";
+
 export function EvaluationForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -32,7 +34,7 @@ export function EvaluationForm() {
         missionAlignment: Number(form.get("missionAlignment")),
         strengths: form.get("strengths") as string,
         concerns: form.get("concerns") as string,
-        recommendation: form.get("recommendation") as any,
+        recommendation: form.get("recommendation") as string as Recommendation,
       });
       router.back();
     } catch (err) {

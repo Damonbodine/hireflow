@@ -9,6 +9,7 @@
  */
 
 import type * as applications from "../applications.js";
+import type * as authHelpers from "../authHelpers.js";
 import type * as candidates from "../candidates.js";
 import type * as crons from "../crons.js";
 import type * as dashboard from "../dashboard.js";
@@ -28,6 +29,7 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   applications: typeof applications;
+  authHelpers: typeof authHelpers;
   candidates: typeof candidates;
   crons: typeof crons;
   dashboard: typeof dashboard;

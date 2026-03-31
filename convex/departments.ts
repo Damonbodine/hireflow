@@ -1,12 +1,13 @@
 import { v } from "convex/values";
 import { query, mutation } from "./_generated/server";
+import { requireRole } from "./authHelpers";
 
 export const list = query({
   args: {},
   handler: async (ctx) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) return [];
-    return await ctx.db.query("departments").order("desc").collect();
+    return await ctx.db.query("departments").order("desc").take(100);
   },
 });
 
@@ -26,8 +27,7 @@ export const create = mutation({
     headId: v.optional(v.id("users")),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Not authenticated");
+    await requireRole(ctx, ["HiringAdmin"]);
     return await ctx.db.insert("departments", {
       ...args,
       status: "Active" as const,
@@ -45,8 +45,7 @@ export const update = mutation({
     status: v.optional(v.union(v.literal("Active"), v.literal("Inactive"))),
   },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Not authenticated");
+    await requireRole(ctx, ["HiringAdmin"]);
     const { id, ...fields } = args;
     const updates = Object.fromEntries(
       Object.entries(fields).filter(([_, val]) => val !== undefined)
@@ -60,8 +59,7 @@ export const update = mutation({
 export const remove = mutation({
   args: { id: v.id("departments") },
   handler: async (ctx, args) => {
-    const identity = await ctx.auth.getUserIdentity();
-    if (!identity) throw new Error("Not authenticated");
+    await requireRole(ctx, ["HiringAdmin"]);
     const existing = await ctx.db.get(args.id);
     if (!existing) throw new Error("Department not found");
     await ctx.db.delete(args.id);

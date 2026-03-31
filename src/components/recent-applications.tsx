@@ -5,6 +5,7 @@ import { api } from "@/convex/_generated/api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { formatEnum } from "@/lib/utils";
 
 const stageBadgeVariant = (stage: string) => {
   switch (stage) {
@@ -40,7 +41,7 @@ export function RecentApplications() {
                 <TableCell className="font-medium">{app.candidateName}</TableCell>
                 <TableCell>{app.jobTitle}</TableCell>
                 <TableCell>{new Date(app.appliedDate).toLocaleDateString()}</TableCell>
-                <TableCell><Badge variant={stageBadgeVariant(app.stage)}>{app.stage}</Badge></TableCell>
+                <TableCell><Badge variant={stageBadgeVariant(app.stage)}>{formatEnum(app.stage)}</Badge></TableCell>
               </TableRow>
             ))}
             {(!apps || apps.length === 0) && (

@@ -5,6 +5,7 @@ import { api } from "@/convex/_generated/api";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { useRouter } from "next/navigation";
+import { formatEnum } from "@/lib/utils";
 
 export default function OffersPage() {
   const offers = useQuery(api.offers.list);
@@ -34,7 +35,7 @@ export default function OffersPage() {
                 <TableCell className="font-medium">{offer.candidateName}</TableCell>
                 <TableCell>{offer.jobTitle}</TableCell>
                 <TableCell>{offer.proposedTitle}</TableCell>
-                <TableCell>${offer.proposedSalary.toLocaleString()} ({offer.salaryType})</TableCell>
+                <TableCell>${offer.proposedSalary.toLocaleString()} ({formatEnum(offer.salaryType)})</TableCell>
                 <TableCell><Badge variant={offer.status === "Accepted" ? "default" : "outline"}>{offer.status}</Badge></TableCell>
                 <TableCell>{new Date(offer.offerDate).toLocaleDateString()}</TableCell>
                 <TableCell>{new Date(offer.expirationDate).toLocaleDateString()}</TableCell>

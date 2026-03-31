@@ -7,6 +7,7 @@ import { Id } from "@/convex/_generated/dataModel";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { formatEnum } from "@/lib/utils";
 
 export default function OfferDetailPage() {
   const params = useParams();
@@ -31,7 +32,7 @@ export default function OfferDetailPage() {
         <CardContent className="space-y-3 text-sm">
           <div><span className="text-muted-foreground">Position:</span> {offer.jobTitle}</div>
           <div><span className="text-muted-foreground">Proposed Title:</span> {offer.proposedTitle}</div>
-          <div><span className="text-muted-foreground">Salary:</span> ${offer.proposedSalary.toLocaleString()} ({offer.salaryType})</div>
+          <div><span className="text-muted-foreground">Salary:</span> ${offer.proposedSalary.toLocaleString()} ({formatEnum(offer.salaryType)})</div>
           <div><span className="text-muted-foreground">Start Date:</span> {new Date(offer.startDate).toLocaleDateString()}</div>
           <div><span className="text-muted-foreground">Expires:</span> {new Date(offer.expirationDate).toLocaleDateString()}</div>
           {offer.benefits && <div><span className="text-muted-foreground">Benefits:</span> {offer.benefits}</div>}
